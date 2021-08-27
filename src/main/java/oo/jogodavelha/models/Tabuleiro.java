@@ -19,7 +19,7 @@ public class Tabuleiro {
 //	}
 
 	
-	public Map getTabuleiro() {
+	public Map<Coordenada, Jogada> getTabuleiro() {
 		return tabuleiro;
 	}
 
@@ -90,12 +90,10 @@ public class Tabuleiro {
 			verificaPosicao(umaJogada);
 			tabuleiro.put(umaJogada.coordenada, umaJogada);
 			vez = umaJogada.getSimbolo();
-		} catch (ExcecaoPorCoordenadaInvalida e) {
+		} catch (ExcecaoPorCoordenadaInvalida | ExcecaoPorSimboloInvalido e) {
 			// TODO: handle exception
-			throw new ExcecaoPorCoordenadaInvalida();
-		} catch (ExcecaoPorSimboloInvalido e){
-			throw new ExcecaoPorSimboloInvalido();
-		}
+			throw e;
+		} 
 		
 		
 	}
